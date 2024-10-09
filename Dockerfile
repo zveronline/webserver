@@ -9,4 +9,5 @@ RUN docker-php-ext-configure gd \
 --with-jpeg \
 NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
 docker-php-ext-install -j$(nproc) gd \ 
-&& apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
+&& apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev \
+&& rm -rf /tmp/*
