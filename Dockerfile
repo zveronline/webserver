@@ -1,5 +1,5 @@
 FROM php:8.3-fpm-alpine
-RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf \
+RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev \
 && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
 && echo "Europe/Moscow" > /etc/timezone \
 && apk del tzdata \
