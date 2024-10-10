@@ -1,5 +1,5 @@
 FROM php:7.2-fpm-alpine
-RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo icu icu-data-full \
+RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo icu \
 && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
 && echo "Europe/Moscow" > /etc/timezone \
 && apk del tzdata
