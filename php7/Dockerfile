@@ -3,7 +3,7 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo icu libmcry
 && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
 && echo "Europe/Moscow" > /etc/timezone \
 && apk del tzdata
-RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev g++ make autoconf zlib-dev icu-dev libmcrypt-dev \
+RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev g++ make autoconf zlib-dev icu-dev \
 && docker-php-ext-install mysqli pdo pdo_mysql \
 && docker-php-ext-configure gd \
 NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
