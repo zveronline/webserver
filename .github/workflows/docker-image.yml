@@ -16,6 +16,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout paths
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            php:
+              - 'php/**'
+            php7:
+              - 'php7/**'
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -36,6 +46,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image php8
+        if: steps.changes.outputs.php == 'true'
+        run:
         uses: docker/build-push-action@v6
         with:
           build-args: |
@@ -53,6 +65,8 @@ jobs:
           push: true
 
       - name: Build and push Docker image php7
+        if: steps.changes.outputs.php7 == 'true'
+        run:
         uses: docker/build-push-action@v6
         with:
           build-args: |
