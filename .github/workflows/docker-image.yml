@@ -47,7 +47,6 @@ jobs:
 
       - name: Build and push Docker image php8
         if: steps.changes.outputs.php == 'true'
-        run:
         uses: docker/build-push-action@v6
         with:
           build-args: |
@@ -66,7 +65,6 @@ jobs:
 
       - name: Build and push Docker image php7
         if: steps.changes.outputs.php7 == 'true'
-        run:
         uses: docker/build-push-action@v6
         with:
           build-args: |
