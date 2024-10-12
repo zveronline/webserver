@@ -47,7 +47,7 @@ jobs:
             linux/amd64
             linux/arm/v7
             linux/arm64
-          file: ./php
+          file: ./php/Dockerfile
 #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
           tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.3
           push: true
@@ -64,7 +64,7 @@ jobs:
             linux/amd64
             linux/arm/v7
             linux/arm64
-          file: ./php-7
+          file: ./php7/Dockerfile
 #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
           tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:7.2
           push: true

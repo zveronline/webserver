@@ -4,7 +4,7 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcache
 && echo "Europe/Moscow" > /etc/timezone \
 && apk del tzdata
 RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev icu-dev \
-&& docker-php-ext-install mysqli pdo pdo_mysql opcache intl \
+&& docker-php-ext-install mysqli pdo pdo_mysql opcache mcrypt \
 && docker-php-ext-configure gd \
 --with-freetype \
 --with-jpeg \
