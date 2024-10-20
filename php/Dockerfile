@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.2-fpm-alpine
 RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcached icu icu-data-full \
 && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
 && echo "Europe/Moscow" > /etc/timezone \
