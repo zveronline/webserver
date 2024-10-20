@@ -58,9 +58,9 @@ jobs:
             linux/amd64
             linux/arm/v7
             linux/arm64
-          file: ./php/Dockerfile
+          file: ./php82/Dockerfile
 #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
-          tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.3
+          tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.2
           push: true
 
       - name: Build and push Docker image php7
