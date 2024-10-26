@@ -15,3 +15,4 @@ NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
 && docker-php-ext-configure intl && docker-php-ext-install intl \
 && apk del -f .build-deps \
 && rm -rf /tmp/*
+ADD modules/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
