@@ -22,7 +22,7 @@ jobs:
         with:
           filters: |
             php:
-              - 'php/**'
+              - 'php82/**'
             php7:
               - 'php7/**'
 
@@ -56,7 +56,6 @@ jobs:
           context: .
           platforms: |
             linux/amd64
-            linux/arm/v7
             linux/arm64
           file: ./php82/Dockerfile
 #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
@@ -74,7 +73,6 @@ jobs:
           context: .
           platforms: |
             linux/amd64
-            linux/arm/v7
             linux/arm64
           file: ./php7/Dockerfile
 #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
