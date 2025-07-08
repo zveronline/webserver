@@ -22,7 +22,7 @@ jobs:
         with:
           filters: |
             php:
-              - 'php82/**'
+              - 'php83/**'
             php7:
               - 'php7/**'
 
@@ -57,9 +57,9 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
-          file: ./php82/Dockerfile
+          file: ./php83/Dockerfile
 #          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
-          tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.2
+          tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.3
           push: true
 
       - name: Build and push Docker image php7
