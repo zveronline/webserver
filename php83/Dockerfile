@@ -6,7 +6,7 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcache
 RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev icu-dev pcre-dev libzip-dev imagemagick-dev gmp-dev \
     && pecl install memcached-3.2.0 redis apcu imagick \
     && docker-php-ext-configure gd zip \
-    --with-zlib-dir=/usr \
+#    --with-zlib-dir=/usr \
     --with-freetype \
     --with-jpeg \
     && docker-php-ext-configure intl \
