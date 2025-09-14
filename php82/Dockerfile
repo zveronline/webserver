@@ -5,12 +5,13 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcache
     && apk del tzdata
 RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev icu-dev pcre-dev libzip-dev imagemagick-dev gmp-dev \
     && pecl install memcached-3.2.0 redis apcu imagick \
-    && docker-php-ext-configure gd intl \
+    && docker-php-ext-configure gd \
     --with-freetype \
     --with-jpeg \
-    && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-    && docker-php-ext-install -j$(nproc) gd exif mysqli pdo pdo_mysql opcache intl gmp \ 
-    && docker-php-ext-enable memcached redis apcu exif intl zip mysqli pdo pdo_mysql opcache imagick \
+    && docker-php-ext-configure intl \
+    NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
+    && docker-php-ext-install -j$(nproc) gd exif mysqli pdo pdo_mysql opcache intl \ 
+    && docker-php-ext-enable memcached redis apcu exif intl mysqli pdo pdo_mysql opcache imagick \
     && pecl clear-cache \
     && apk del -f .build-deps \
     && rm -rf /tmp/*
