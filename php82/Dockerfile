@@ -1,5 +1,5 @@
 FROM php:8.2-fpm-alpine
-RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcached icu icu-data-full diffutils zip libzip imagemagick \
+RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcached icu icu-data-full diffutils zip libzip imagemagick gmp \
     && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
     && echo "Europe/Moscow" > /etc/timezone \
     && apk del tzdata
@@ -16,3 +16,4 @@ RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev li
     && apk del -f .build-deps \
     && rm -rf /tmp/*
 ADD modules/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+ADD conf/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
