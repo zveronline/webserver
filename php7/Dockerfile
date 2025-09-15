@@ -6,6 +6,8 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo icu libmcry
 RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev g++ make autoconf zlib-dev icu-dev libmcrypt-dev pcre-dev libzip-dev imagemagick-dev gmp-dev \
     && docker-php-ext-install mysqli pdo pdo_mysql \
     && docker-php-ext-configure gd \
+    --with-freetype \
+    --with-jpeg \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
     && docker-php-ext-install -j$(nproc) gd \ 
     && docker-php-ext-configure intl && docker-php-ext-install intl \
