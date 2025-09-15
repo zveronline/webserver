@@ -10,7 +10,7 @@ RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev li
     --with-jpeg \
     && docker-php-ext-configure intl \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-    && docker-php-ext-install -j$(nproc) zip gd exif mysqli pdo pdo_mysql opcache intl gmp \ 
+    && docker-php-ext-install -j$(nproc) zip gd exif mysqli pdo pdo_mysql opcache intl gmp \
     && docker-php-ext-enable memcached redis apcu exif intl zip mysqli pdo pdo_mysql opcache imagick gmp \
     && pecl clear-cache \
     && apk del -f .build-deps \
