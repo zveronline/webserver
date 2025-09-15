@@ -8,9 +8,10 @@ RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev li
     && docker-php-ext-configure gd \
     && docker-php-ext-configure intl \
     NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-    && docker-php-ext-install -j$(nproc) gd mysqli pdo pdo_mysql intl \ 
-    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-install -j$(nproc) gd exif mysqli pdo pdo_mysql opcache intl gmp zip \ 
+    && docker-php-ext-enable mcrypt redis apcu exif intl mysqli pdo pdo_mysql opcache imagick gmp zip \
     && pecl clear-cache \
     && apk del -f .build-deps \
     && rm -rf /tmp/*
+ADD modules/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 ADD conf/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
