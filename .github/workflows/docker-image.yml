@@ -23,8 +23,10 @@ jobs:
           filters: |
             php82:
               - 'php82/**'
-            php:
+            php83:
               - 'php83/**'
+            php84:
+              - 'php84/**'
             php7:
               - 'php7/**'
 
@@ -47,7 +49,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image php82
+      - name: Build and push Docker image php 8.2
         if: steps.changes.outputs.php82 == 'true'
         uses: docker/build-push-action@v6
         with:
@@ -64,7 +66,7 @@ jobs:
           tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.2
           push: true
 
-      - name: Build and push Docker image php8
+      - name: Build and push Docker image php 8.3
         if: steps.changes.outputs.php == 'true'
         uses: docker/build-push-action@v6
         with:
@@ -81,7 +83,24 @@ jobs:
           tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.3
           push: true
 
-      - name: Build and push Docker image php7
+      - name: Build and push Docker image php 8.4
+        if: steps.changes.outputs.php == 'true'
+        uses: docker/build-push-action@v6
+        with:
+          build-args: |
+            MAINTAINER=${{ github.repository_owner }}
+            BRANCH=${{ github.ref_name }}
+            SOURCE_COMMIT=${{ github.sha }}
+          context: .
+          platforms: |
+            linux/amd64
+            linux/arm64
+          file: ./php84/Dockerfile
+#          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:latest
+          tags: ghcr.io/${{ env.IMAGE_NAME }}/php-fpm:8.4
+          push: true
+
+      - name: Build and push Docker image php 7
         if: steps.changes.outputs.php7 == 'true'
         uses: docker/build-push-action@v6
         with:
