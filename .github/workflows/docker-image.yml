@@ -67,7 +67,7 @@ jobs:
           push: true
 
       - name: Build and push Docker image php 8.3
-        if: steps.changes.outputs.php == 'true'
+        if: steps.changes.outputs.php83 == 'true'
         uses: docker/build-push-action@v6
         with:
           build-args: |
@@ -84,7 +84,7 @@ jobs:
           push: true
 
       - name: Build and push Docker image php 8.4
-        if: steps.changes.outputs.php == 'true'
+        if: steps.changes.outputs.php84 == 'true'
         uses: docker/build-push-action@v6
         with:
           build-args: |
