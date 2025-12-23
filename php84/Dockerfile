@@ -4,7 +4,7 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcache
     && echo "Europe/Moscow" > /etc/timezone \
     && apk del tzdata
 RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev icu-dev pcre-dev libzip-dev imagemagick-dev gmp-dev \
-    && pecl install memcached-3.2.0 redis apcu imagick \
+    && pecl install memcached redis apcu imagick \
     && docker-php-ext-configure gd \
     --with-freetype \
     --with-jpeg \
