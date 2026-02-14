@@ -15,6 +15,8 @@ RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev li
     && pecl clear-cache \
     && apk del -f .build-deps \
     && rm -rf /tmp/*
+RUN mkdir -p /var/run/php
+ADD conf/zz-socket.conf /usr/local/etc/php-fpm.d/
 ADD modules/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 ADD conf/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
