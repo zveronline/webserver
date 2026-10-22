@@ -9,8 +9,8 @@ RUN pecl install memcached redis apcu imagick \
     --with-freetype \
     --with-jpeg \
     && docker-php-ext-configure intl
-RUN docker-php-ext-install -j"$(nproc)" zip gd exif mysqli pdo pdo_mysql opcache intl
-RUN docker-php-ext-enable memcached redis apcu exif intl zip mysqli pdo pdo_mysql opcache imagick
+RUN docker-php-ext-install -j"$(nproc)" zip exif mysqli pdo pdo_mysql opcache intl gmp
+RUN docker-php-ext-enable memcached redis apcu exif intl zip mysqli pdo pdo_mysql opcache imagick gmp
 RUN pecl clear-cache \
     && apk del -f .build-deps \
     && rm -rf /tmp/*
