@@ -3,15 +3,15 @@ RUN apk add --update --no-cache tzdata freetype libpng libjpeg-turbo libmemcache
     && cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
     && echo "Europe/Moscow" > /etc/timezone \
     && apk del tzdata
-RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev icu-dev pcre-dev libzip-dev imagemagick-dev gmp-dev \
-    && pecl install memcached redis apcu imagick \
+RUN apk add --update --no-cache --virtual .build-deps freetype-dev libpng-dev libjpeg-turbo-dev libmemcached-dev g++ make autoconf zlib-dev icu-dev pcre-dev libzip-dev imagemagick-dev gmp-dev
+RUN pecl install memcached redis apcu imagick \
     && docker-php-ext-configure gd \
     --with-freetype \
     --with-jpeg \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install -j"$(nproc)" zip gd exif mysqli pdo pdo_mysql opcache intl gmp \
-    && docker-php-ext-enable memcached redis apcu exif intl zip mysqli pdo pdo_mysql opcache imagick gmp \
-    && pecl clear-cache \
+    && docker-php-ext-configure intl
+RUN docker-php-ext-install -j"$(nproc)" zip gd exif mysqli pdo pdo_mysql opcache intl gmp \
+    && docker-php-ext-enable memcached redis apcu exif intl zip mysqli pdo pdo_mysql opcache imagick gmp
+RUN pecl clear-cache \
     && apk del -f .build-deps \
     && rm -rf /tmp/*
 RUN mkdir -p /var/run/php
